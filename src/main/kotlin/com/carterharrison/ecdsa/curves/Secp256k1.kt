@@ -3,6 +3,7 @@ package com.carterharrison.ecdsa.curves
 import com.carterharrison.ecdsa.EcCurve
 import java.math.BigInteger
 
+
 object Secp256k1 : EcCurve() {
     override val a: BigInteger = BigInteger("00")
     override val b: BigInteger = BigInteger("07")
