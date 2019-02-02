@@ -59,7 +59,9 @@ class Secp256k1Test {
     @Test
     fun testSign() {
 //        val key = EcKeyGenerator.newInstance(Secp256k1)
-//        val sign = EcSign.signData(key, byteArrayOf(0x00, 0x00, 0x00, 0x01, 0x03), EcSha256)
+//        val sign = EcSign.signData(key, byteArrayOf(0x00, 0x00, 0x00, 0x01, 0x01), EcSha256)
+//
+//        println(EcSign.verifySignature(key.publicKey, byteArrayOf(0x00, 0x00, 0x00, 0x01, 0x01), EcSha256, sign))
 //
 //
 //        println(key.publicKey.x.toByteArray().toHexString())

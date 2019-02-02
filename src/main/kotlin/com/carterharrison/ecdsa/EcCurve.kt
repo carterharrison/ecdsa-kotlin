@@ -89,11 +89,15 @@ abstract class EcCurve {
         var m = n
 
         while (m != EcConstants.ZERO) {
+
+
             if (m and EcConstants.ONE != 0.toBigInteger()) {
                 r = add(r, q)
             }
 
             m = m shr 1
+
+            println(m)
 
             if (m != 0.toBigInteger()) {
                 q = PointMath.double(q)
