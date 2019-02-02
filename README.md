@@ -24,6 +24,6 @@ This library comes with a plethora of curves, but do not worry! You can create y
 * `Secp256k1`
 
 ## Hashing
-This library comes with some hashing algorithms to create signatures, you can implement your own if your favorite hashing algorithm is not inclued. Below are listed the hashing algorithms that come out of the box. 
+This library comes with some hashing algorithms to create signatures, you can implement your own if your favorite hashing algorithm is not included. Below are listed the hashing algorithms that come out of the box. 
 
 * `SHA256`
