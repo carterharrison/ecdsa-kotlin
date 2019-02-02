@@ -36,5 +36,5 @@ val randomKeys = EcKeyGenerator.newInstance(Secp256k1)
 
 // generates a random key pair on the secp256k1 curve with a private key
 val privateKey = BigInteger(...)
-val fromPrivateKeys = EcKeyGenerator.newInstance(privateKey, Secp256k1) 
+val fromPrivateKey = EcKeyGenerator.newInstance(privateKey, Secp256k1) 
 ```
