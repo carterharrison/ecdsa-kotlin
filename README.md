@@ -38,3 +38,13 @@ val randomKeys = EcKeyGenerator.newInstance(Secp256k1)
 val privateKey = BigInteger(...)
 val fromPrivateKey = EcKeyGenerator.newInstance(privateKey, Secp256k1) 
 ```
+
+## Signing
+Signing is just as easy as creating a key pair. You may sign whatever data you please.
+
+```kotlin
+// signs data [0x13, 0x37]
+val data = byteArrayOf(0x13, 0x37)
+val keyPair = EcKeyGenerator.newInstance(Secp256k1) 
+val signature = EcSign.signData(keyPair, data, EcSha256)
+```
