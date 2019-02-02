@@ -18,7 +18,8 @@
 
 A simple, yet lightweight, fast elliptical curve cryptography library in kotlin.
 
-##  Curves
+## Supported Curves
+This library comes with a plethora of curves, but do not worry! You can create your own curve to fit your cryptographic needs. Below are listed the curves that come out of the box. 
 
 * Secp256k1
 
