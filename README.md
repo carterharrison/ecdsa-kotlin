@@ -48,3 +48,14 @@ val data = byteArrayOf(0x13, 0x37)
 val keyPair = EcKeyGenerator.newInstance(Secp256k1) 
 val signature = EcSign.signData(keyPair, data, EcSha256)
 ```
+
+## Verifying
+After creating a signature, you can verify that the public key signed the data.
+
+```kotlin
+// verifies that the public key signed the data
+val publicKey = EcPoint(...)
+val signature = EcSignature(...)
+val data = byteArrayOf(0x13, 0x37)
+val isValid = EcSign.verifySignature(publicKey, data, EcSha256, signature)
+```
