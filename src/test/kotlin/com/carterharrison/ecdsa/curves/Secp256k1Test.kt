@@ -2,6 +2,8 @@ package com.carterharrison.ecdsa.curves
 
 import com.carterharrison.ecdsa.EcKeyGenerator
 import com.carterharrison.ecdsa.EcPoint
+import com.carterharrison.ecdsa.EcSign
+import com.carterharrison.ecdsa.hash.EcSha256
 import org.junit.Assert
 import org.junit.Test
 import java.math.BigInteger
@@ -14,6 +16,17 @@ class Secp256k1Test {
         val keypair = EcKeyGenerator.newInstance(privateKey, Secp256k1)
 
         Assert.assertEquals(expectedPublic, keypair.publicKey)
+    }
+
+    fun ByteArray.toHexString(): String {
+        val builder = StringBuilder()
+        val it = this.iterator()
+        builder.append("0x")
+        while (it.hasNext()) {
+            builder.append(String.format("%02X", it.next()))
+        }
+
+        return builder.toString()
     }
 
     @Test
@@ -41,5 +54,18 @@ class Secp256k1Test {
             "b721f75f16b912e2db07af1d155f0d633734a0d2cfc1ecb10fa76dc0f249ca4d",
             "06fdded00ddc6a3250973b1f994375f7208de58b1fc0585e55bc485a9e1c6a3b"
         )
+    }
+
+    @Test
+    fun testSign() {
+//        val key = EcKeyGenerator.newInstance(Secp256k1)
+//        val sign = EcSign.signData(key, byteArrayOf(0x00, 0x00, 0x00, 0x01, 0x03), EcSha256)
+//
+//
+//        println(key.publicKey.x.toByteArray().toHexString())
+//        println(key.publicKey.y.toByteArray().toHexString())
+//
+//        println(sign.r.toByteArray().toHexString())
+//        println(sign.s.toByteArray().toHexString())
     }
 }
