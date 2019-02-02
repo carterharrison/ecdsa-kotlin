@@ -18,3 +18,7 @@
 
 A simple, yet lightweight, fast elliptical curve cryptography library in kotlin.
 
+##  Curves
+
+* Secp256k1
+
