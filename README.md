@@ -15,7 +15,8 @@
 [![CircleCI](https://circleci.com/gh/carterharrison/ecdsa-kotlin.svg?style=shield)](https://circleci.com/gh/carterharrison/ecdsa-kotlin) [![](https://jitpack.io/v/carterharrison/ecdsa-kotlin.svg)](https://jitpack.io/#carterharrison/ecdsa-kotlin)
 
 
-A simple, yet lightweight, fast elliptical curve cryptography library in kotlin.
+A simple, yet lightweight, fast elliptical curve cryptography library in kotlin. **Please note that this library must undergo further testing before using in production.**
+
 
 ## Supported Curves
 This library comes with a plethora of curves, but do not worry! You can create your own curve to fit your cryptographic needs. Below are listed the curves that come out of the box. 
