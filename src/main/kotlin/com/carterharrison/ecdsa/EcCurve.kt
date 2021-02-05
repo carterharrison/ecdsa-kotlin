@@ -97,8 +97,6 @@ abstract class EcCurve {
 
             m = m shr 1
 
-            println(m)
-
             if (m != 0.toBigInteger()) {
                 q = PointMath.double(q)
             }
