@@ -1,6 +1,7 @@
 package com.carterharrison.ecdsa
 
 import com.ionspin.kotlin.bignum.integer.BigInteger
+import com.ionspin.kotlin.bignum.modular.ModularBigInteger
 
 
 /**
@@ -28,7 +29,7 @@ object PointMath {
      * @return The quotient of num and dom
      */
     fun divide (num : BigInteger, dom : BigInteger, prime: BigInteger) : BigInteger {
-        val inverseDen = dom.modInverse(prime)
+        val inverseDen = dom.toModularBigInteger(prime).inverse().toBigInteger()
         return multiply(num % prime, inverseDen, prime)
     }
 
@@ -39,8 +40,8 @@ object PointMath {
      * @param curve The curve that the point is on.
      * @return The slope of the tangent line at the point
      */
-    fun tangent (point: EcPoint, curve: EcCurve) : BigInteger {
-        return divide(point.x * point.x*EcConstants.THREE+curve.a, point.y * EcConstants.TWO, curve.p)
+    fun tangent(point: EcPoint, curve: EcCurve): BigInteger {
+        return divide(point.x * point.x * EcConstants.THREE + curve.a, point.y * EcConstants.TWO, curve.p)
     }
 
     /**
