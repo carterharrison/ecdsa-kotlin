@@ -1,7 +1,7 @@
 package com.carterharrison.ecdsa
 
 import com.carterharrison.ecdsa.curves.Secp256k1
-import java.math.BigInteger
+import com.ionspin.kotlin.bignum.integer.BigInteger
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
@@ -13,8 +13,8 @@ class EcPointTest {
     val g = EcPoint(Secp256k1.x, Secp256k1.y, Secp256k1)
 
     assertEquals(
-      PointMath.tangent(g, Secp256k1),
-      BigInteger("91914383230618135761690975197207778399550061809281766160147273830617914855857")
+      BigInteger.parseString("91914383230618135761690975197207778399550061809281766160147273830617914855857"),
+      PointMath.tangent(g, Secp256k1)
     )
   }
 

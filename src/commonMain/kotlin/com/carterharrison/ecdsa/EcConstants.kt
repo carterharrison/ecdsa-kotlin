@@ -1,13 +1,14 @@
 package com.carterharrison.ecdsa
 
-import java.math.BigInteger
+import com.ionspin.kotlin.bignum.integer.BigInteger
+
 
 /**
  * An object to hold static values used when doing point math.
  */
 object EcConstants {
     val ZERO : BigInteger = BigInteger.ZERO
-    val ONE : BigInteger = BigInteger.valueOf(1)
-    val TWO : BigInteger = BigInteger.valueOf(2)
-    val THREE : BigInteger = BigInteger.valueOf(3)
+    val ONE : BigInteger = BigInteger.ONE
+    val TWO : BigInteger = BigInteger.TWO
+    val THREE : BigInteger = BigInteger.fromInt(3)
 }

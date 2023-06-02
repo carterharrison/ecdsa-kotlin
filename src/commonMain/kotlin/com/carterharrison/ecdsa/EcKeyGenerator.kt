@@ -1,8 +1,8 @@
 package com.carterharrison.ecdsa
 
-import java.math.BigInteger
-import java.security.PrivateKey
-import java.security.SecureRandom
+import com.ionspin.kotlin.bignum.integer.BigInteger
+import com.ionspin.kotlin.bignum.integer.Sign
+import org.kotlincrypto.SecureRandom
 
 /**
  * A set of functions to help create EcKeyPairs
@@ -37,8 +37,7 @@ object EcKeyGenerator {
      */
     private val random32BytePrivateKey : BigInteger
         get() {
-            val privateKeyBytes = ByteArray(32)
-            SecureRandom().nextBytes(privateKeyBytes)
-            return (BigInteger(privateKeyBytes).abs())
+            val randomBytes = SecureRandom().nextBytesOf(32)
+            return BigInteger.fromByteArray(randomBytes, Sign.POSITIVE).abs()
         }
 }
