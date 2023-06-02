@@ -2,15 +2,11 @@ import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 
 plugins {
     kotlin("multiplatform") version "1.8.21"
-    id("jacoco")
 }
 
 group = "com.carterharrison"
 version = "v0.1.0-beta.0"
 
-repositories {
-    mavenCentral()
-}
 
 @OptIn(ExperimentalKotlinGradlePluginApi::class)
 kotlin {
@@ -18,7 +14,6 @@ kotlin {
 
     jvm {
         jvmToolchain(11)
-        withJava()
         testRuns["test"].executionTask.configure {
             useJUnitPlatform()
         }
@@ -45,10 +40,3 @@ kotlin {
         }
     }
 }
-
-//jacocoTestReport {
-//    reports {
-//        xml.required = true
-//        html.required = false
-//    }
-//}
