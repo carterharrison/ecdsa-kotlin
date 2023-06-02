@@ -1,8 +1,9 @@
 package com.carterharrison.ecdsa
 
 import com.carterharrison.ecdsa.hash.EcHasher
-import java.math.BigInteger
-import java.security.SecureRandom
+import com.ionspin.kotlin.bignum.integer.BigInteger
+import com.ionspin.kotlin.bignum.integer.Sign
+import org.kotlincrypto.SecureRandom
 
 object EcSign {
 
@@ -13,13 +14,41 @@ object EcSign {
      * @return A secure random number between [1 and n - 1]
      */
     private fun getRandomK (n : BigInteger) : BigInteger {
-        val randomValue = BigInteger(256, SecureRandom())
+        val randomBytes = randomBits(256, SecureRandom())
+        val randomValue = BigInteger.fromByteArray(randomBytes, Sign.POSITIVE)
 
         if (randomValue >= n || randomValue <= BigInteger.ONE) {
             return getRandomK(n)
         }
 
         return randomValue
+    }
+
+    /**
+     * Copied from java.math.BigInteger
+     *
+     * Constructs a randomly generated BigInteger, uniformly distributed over
+     * the range 0 to (2<sup>{@code numBits}</sup> - 1), inclusive.
+     * The uniformity of the distribution assumes that a fair source of random
+     * bits is provided in {@code rnd}.  Note that this constructor always
+     * constructs a non-negative BigInteger.
+     *
+     * @param  numBits maximum bitLength of the new BigInteger.
+     * @param  rnd source of randomness to be used in computing the new
+     *         BigInteger.
+     * @throws IllegalArgumentException {@code numBits} is negative.
+     * @see #bitLength()
+     */
+    private fun randomBits(numBits: Int, rnd: SecureRandom): ByteArray {
+        if (numBits < 0) throw IllegalArgumentException("numBits must be non-negative")
+        val numBytes = ((numBits.toLong() + 7) / 8).toInt() // avoid overflow
+
+        // Generate random bytes and mask out any excess bits
+        val randomBits: ByteArray = rnd.nextBytesOf(numBytes)
+        val excessBits = 8 * numBytes - numBits
+        randomBits[0] = (randomBits[0].toInt() and (1 shl 8 - excessBits) - 1).toByte()
+
+        return randomBits
     }
 
     /**
@@ -32,7 +61,7 @@ object EcSign {
      */
     fun signData (keyPair: EcKeyPair, data : ByteArray, hasher : EcHasher) : EcSignature {
         // todo range from 1 to n-1
-        val hash = BigInteger(1, hasher.hash(data))
+        val hash = BigInteger.fromByteArray(hasher.hash(data), Sign.POSITIVE)
         val g = keyPair.publicKey.curve.g
         val n = keyPair.publicKey.curve.n
         val k = getRandomK(n) % n
@@ -61,7 +90,7 @@ object EcSign {
      * @return If the signature is valid
      */
     fun verifySignature (publicKey : EcPoint, data: ByteArray, hasher: EcHasher, signature: EcSignature) : Boolean {
-        val hash = BigInteger(1, hasher.hash(data))
+        val hash = BigInteger.fromByteArray(hasher.hash(data), Sign.POSITIVE)
         val g = publicKey.curve.g
         val n = publicKey.curve.n
         val r = signature.r

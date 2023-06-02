@@ -1,6 +1,7 @@
 package com.carterharrison.ecdsa
 
-import java.math.BigInteger
+import com.ionspin.kotlin.bignum.integer.BigInteger
+import com.ionspin.kotlin.bignum.integer.toBigInteger
 
 
 /**
@@ -91,13 +92,13 @@ abstract class EcCurve {
         while (m != EcConstants.ZERO) {
 
 
-            if (m and EcConstants.ONE != 0.toBigInteger()) {
+            if (m and EcConstants.ONE != EcConstants.ZERO) {
                 r = add(r, q)
             }
 
             m = m shr 1
 
-            if (m != 0.toBigInteger()) {
+            if (m != EcConstants.ZERO) {
                 q = PointMath.double(q)
             }
 
