@@ -1,6 +1,6 @@
 package com.carterharrison.ecdsa
 
-import java.math.BigInteger
+import com.ionspin.kotlin.bignum.integer.BigInteger
 
 
 /**
