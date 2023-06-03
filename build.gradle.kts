@@ -2,10 +2,11 @@ import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 
 plugins {
     kotlin("multiplatform") version "1.8.21"
+    id("com.vanniktech.maven.publish") version "0.25.2"
 }
 
 group = "com.carterharrison"
-version = "v0.1.0-beta.0"
+version = "0.1.0-beta1"
 
 
 @OptIn(ExperimentalKotlinGradlePluginApi::class)
