@@ -2,11 +2,9 @@ package com.carterharrison.ecdsa.curves
 
 import com.carterharrison.ecdsa.EcKeyGenerator
 import com.carterharrison.ecdsa.EcPoint
-import com.carterharrison.ecdsa.EcSign
-import com.carterharrison.ecdsa.hash.EcSha256
-import org.junit.Assert
-import org.junit.Test
+import kotlin.test.Test
 import java.math.BigInteger
+import kotlin.test.assertEquals
 
 class Secp256k1Test {
 
@@ -15,7 +13,7 @@ class Secp256k1Test {
         val privateKey = BigInteger(p, 16)
         val keypair = EcKeyGenerator.newInstance(privateKey, Secp256k1)
 
-        Assert.assertEquals(expectedPublic, keypair.publicKey)
+        assertEquals(expectedPublic, keypair.publicKey)
     }
 
     fun ByteArray.toHexString(): String {
