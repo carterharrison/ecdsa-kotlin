@@ -2,32 +2,23 @@ package com.carterharrison.ecdsa.curves
 
 import com.carterharrison.ecdsa.EcKeyGenerator
 import com.carterharrison.ecdsa.EcPoint
-import com.carterharrison.ecdsa.EcSign
-import com.carterharrison.ecdsa.hash.EcSha256
-import org.junit.Assert
-import org.junit.Test
-import java.math.BigInteger
+import kotlin.test.Test
+import com.ionspin.kotlin.bignum.integer.BigInteger
+import kotlin.test.assertEquals
 
 class Secp256k1Test {
 
     private fun testKeyPair (x : String, y : String, p : String) {
-        val expectedPublic = EcPoint(BigInteger(x, 16), BigInteger(y, 16), Secp256k1)
-        val privateKey = BigInteger(p, 16)
+        val expectedPublic = EcPoint(BigInteger.parseString(x, 16), BigInteger.parseString(y, 16), Secp256k1)
+        val privateKey = BigInteger.parseString(p, 16)
         val keypair = EcKeyGenerator.newInstance(privateKey, Secp256k1)
 
-        Assert.assertEquals(expectedPublic, keypair.publicKey)
+        assertEquals(expectedPublic, keypair.publicKey)
     }
 
-    fun ByteArray.toHexString(): String {
-        val builder = StringBuilder()
-        val it = this.iterator()
-        builder.append("0x")
-        while (it.hasNext()) {
-            builder.append(String.format("%02X", it.next()))
-        }
 
-        return builder.toString()
-    }
+    @OptIn(ExperimentalUnsignedTypes::class)
+    fun ByteArray.toHexString(): String = asUByteArray().joinToString("") { it.toString(radix = 16).padStart(2, '0') }
 
     @Test
     fun testCase1 () {

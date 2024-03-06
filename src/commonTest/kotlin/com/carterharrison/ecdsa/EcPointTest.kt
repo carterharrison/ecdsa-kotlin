@@ -1,23 +1,22 @@
 package com.carterharrison.ecdsa
 
 import com.carterharrison.ecdsa.curves.Secp256k1
-import org.junit.Assert
-import org.junit.Test
-import java.math.BigInteger
-import java.security.SecureRandom
+import com.ionspin.kotlin.bignum.integer.BigInteger
+import kotlin.test.Test
+import kotlin.test.assertEquals
 
 
 class EcPointTest {
 
-    @Test
-    fun tangent () {
-        val g = EcPoint(Secp256k1.x, Secp256k1.y, Secp256k1)
+  @Test
+  fun tangent() {
+    val g = EcPoint(Secp256k1.x, Secp256k1.y, Secp256k1)
 
-        Assert.assertEquals(
-            PointMath.tangent(g, Secp256k1),
-            BigInteger("91914383230618135761690975197207778399550061809281766160147273830617914855857")
-        )
-    }
+    assertEquals(
+      BigInteger.parseString("91914383230618135761690975197207778399550061809281766160147273830617914855857"),
+      PointMath.tangent(g, Secp256k1)
+    )
+  }
 
 //    @Test
 //    fun mutpily () {
